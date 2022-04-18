@@ -45,10 +45,29 @@ resource "aws_instance" "myFirstInstance" {
   }
 }
 
+resource "aws_instance" "mySecondInstance" {
+  ami           = var.ami_id
+  key_name = var.key_name
+  instance_type = var.instance_type
+  security_groups= [var.security_group]
+  tags= {
+    Name = var.tag_name
+  }
+}
+
 # Create Elastic IP address
 resource "aws_eip" "myFirstInstance" {
   vpc      = true
   instance = aws_instance.myFirstInstance.id
+tags= {
+    Name = "my_elastic_ip"
+  }
+}
+
+# Create Elastic IP address
+resource "aws_eip" "mySecondInstance" {
+  vpc      = true
+  instance = aws_instance.mySecondInstance.id
 tags= {
     Name = "my_elastic_ip"
   }
