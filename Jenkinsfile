@@ -1,3 +1,7 @@
+libraries {
+     lib('pipeline-library-demo')
+ }
+
 pipeline {
     agent any
 
@@ -11,6 +15,12 @@ pipeline {
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
+            }
+        }
+
+        stage ("terraform validation") {
+            steps {
+                sh 'terraform validate'
             }
         }
         
