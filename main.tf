@@ -86,7 +86,7 @@ tags= {
 # Create Elastic IP address
 resource "aws_eip" "myThirdInstance" {
   vpc      = true
-  instance = aws_instance.myThirdInstance
+  instance = aws_instance.myThirdInstance.id
 tags= {
     Name = "my_elastic_ip"
   }
